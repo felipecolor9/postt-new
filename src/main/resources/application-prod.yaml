@@ -1,0 +1,31 @@
+#APP environment with postgreSQL
+
+app:
+  message:
+    This is a property file to the ${spring.application.name}
+
+spring:
+  hibernate:
+    hbm2ddl:
+      auto:
+        update
+  datasource:
+    driver-class-name:
+      org.postgresql.Driver
+    url:
+      jdbc:postgresql://localhost:5432
+    username:
+      postgres
+    password:
+      5922
+  jpa:
+    hibernate:
+      ddl-auto:
+        update
+    generate-ddl:
+      true
+    database-platform:
+      org.hibernate.dialect.PostgreSQL95Dialect
+server:
+  port:
+    8081
