@@ -26,7 +26,6 @@ public class Postit {
     private String name;
     private String details;
     private LocalDateTime creationDate;
-    private LocalDateTime lastAccessDate;
     @ManyToOne(cascade = CascadeType.ALL)
     private User author;
 }
