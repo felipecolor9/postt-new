@@ -23,7 +23,7 @@ public class Postit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
     private String details;
     private LocalDateTime creationDate;
     @ManyToOne(cascade = CascadeType.ALL)
