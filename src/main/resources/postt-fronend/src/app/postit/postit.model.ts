@@ -1,6 +1,6 @@
 export class Postit {
     id: number;
-    name: string;
+    title: string;
     details: string;
     creationDate: string;
 }
