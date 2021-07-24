@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './error-404/error-404.component';
 import { PostitModule } from './postit/postit.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PostitModule } from './postit/postit.module';
     BrowserModule,
     CoreModule,
     PostitModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path:'', redirectTo:'home', pathMatch: 'full'
