@@ -9,12 +9,12 @@ import { Postit } from "./postit.model";
 })
 export class PostitService {
 
-    // Spring Boot default port = 8000
-    private URL: string = "http://localhost.8080/api/postit";
+    // Spring Boot app port = 8081
+    private URL: string = "http://localhost.8081/api/postits/";
 
-    constructor(private httpClient: HttpClient) {} 
+    constructor(private httpClient: HttpClient) {}
 
-    save(postit:Postit): Observable<Postit> { 
+    save(postit:Postit): Observable<Postit> {
         if (postit.id) {
             return this.httpClient.post<Postit>(`${this.URL}/${postit.id}`, postit);
         } else {
