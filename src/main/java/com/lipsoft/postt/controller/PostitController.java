@@ -25,7 +25,7 @@ import java.util.List;
         @ApiResponse(code = 500, message = "Foi gerada uma 'exception'; Erro interno do servidor"),
 })
 @RestController
-@RequestMapping("/postit")
+@RequestMapping("/api/postits")
 public class PostitController {
 
     private final String DOC_POST_OPERATION = "Cria um postit e o adiciona no banco de dados.";
