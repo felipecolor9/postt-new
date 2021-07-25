@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Builder
+@Audited
 @NoArgsConstructor
 @AllArgsConstructor
 public class Postit {

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import java.util.List;
 @Entity
 @Data
 @Builder
+@Audited
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -28,6 +30,6 @@ public class User {
     private String email;
     private LocalDateTime creationDate;
     private LocalDateTime lastAccessDate;
-    @OneToMany(mappedBy = "user")
+    @OneToMany
     private List<Postit> postitList;
 }

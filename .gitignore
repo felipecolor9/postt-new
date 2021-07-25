@@ -5,7 +5,10 @@ target/
 !**/src/test/**/target/
 
 # NODE DEPENDENCIES
-**/src/main/resources/postt-fronend/node_modules
+**/webapp/postt-frontend/node_modules
+*/webapp/postt-frontend/node_modules
+**/node_modules
+**node_modules
 
 ### STS ###
 .apt_generated
@@ -34,3 +37,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
