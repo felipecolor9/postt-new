@@ -10,7 +10,7 @@ import { Postit } from "./postit.model";
 export class PostitService {
 
     // Spring Boot app port = 8081
-    private URL: string = "http://localhost.8081/api/postits/";
+    private URL: string = "http://localhost.8081/api/postits";
 
     constructor(private httpClient: HttpClient) {}
 
