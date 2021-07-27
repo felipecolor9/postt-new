@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Postit } from "../postit.model";
 import { PostitService } from "../postit.service";
+import { Validators } from "@angular/forms";
 
 @Component({
     selector: 'app-register-postit',
@@ -11,24 +12,30 @@ import { PostitService } from "../postit.service";
 export class RegisterPostitComponent implements OnInit {
 
     postitForm: FormGroup;
+    postit: Postit;
 
     constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute, private postitService: PostitService) { }
  
     ngOnInit(): void {
-        this.createForm(new Postit());
+        this.createForm();
     }
 
-    createForm(postit:Postit) {
+    createForm() {
         this.postitForm = this.formBuilder.group({
-            title: '',
+            title: ['', [Validators.minLength(2), Validators.required]],
             details: ''
         })
-        this.postitForm.valueChanges.subscribe(console.log); 
+      
     }
 
     //TODO: finish save function
     save(): void {
-        
+        this.postit = this.postitForm.value;
+        console.log(this.postit)
+        this.postitService.save(this.postit).subscribe({
+            next: postit => console.log('Saved with success!', postit),
+            error: err => console.log('Error', err)
+        });
     }
   
 
