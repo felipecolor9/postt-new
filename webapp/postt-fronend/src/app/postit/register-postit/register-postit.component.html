@@ -1,15 +1,15 @@
 <h2>Register Postit</h2>
 
-<hr/>
+<hr>
 
-<form #musicForm="ngForm">
+<form [formGroup]="postitForm">
 
     <div class="form-group now">
         <label class="col-sm-2 col-from-label">Title:</label>
 
         <div class="col-sm-10">
-            <input [(ngModel)]="postit.title" required name="name" #postitTitle='ngModel' [ngClass]="{'is-invalid':postitTitle.invalid}" class="form-control">
-            <div class="invalid-feedback"> <span>Postit title is required</span></div>
+            <input formControlName="title" class="form-control">
+
         </div>
     </div>
 
@@ -17,14 +17,14 @@
         <label class="col-sm-2 col-from-label">Details:</label>
 
         <div class="col-sm-10">
-            <input [(ngModel)]="postit.details" required name="details" #postitDetails='ngModel' [ngClass]="{'is-invalid':postitDetails.invalid}" class="form-control">
-            <div class="invalid-feedback"> <span>Details required</span></div>
+            <input formControlName="details" class="form-control">
+             
         </div>
     </div>
 
     <br>
 
-    <button [routerLink]="['/dashboard']" [disabled]="musicForm.invalid" (click)="save()" class="btn btn-primary mt-2" style="margin-right: 5px;">Save</button>
+    <button [routerLink]="['/dashboard']" [disabled]="postitForm.invalid" (click)="save()" class="btn btn-primary mt-2" style="margin-right: 5px;">Save</button>
     <button [routerLink]="['/dashboard']" class="btn btn-secondary mt-2">Back</button>
 
 </form>
