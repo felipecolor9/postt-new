@@ -23,7 +23,7 @@ export class RegisterPostitComponent implements OnInit {
     createForm() {
         this.postitForm = this.formBuilder.group({
             title: ['', [Validators.minLength(2), Validators.required]],
-            details: ''
+            details:[ '',[Validators.minLength(2)]]
         })
       
     }
