@@ -25,6 +25,7 @@ import java.util.List;
         @ApiResponse(code = 500, message = "Foi gerada uma 'exception'; Erro interno do servidor"),
 })
 @RestController
+@CrossOrigin
 @RequestMapping("/api/postits")
 public class PostitController {
 
