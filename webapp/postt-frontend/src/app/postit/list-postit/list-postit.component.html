@@ -1,0 +1,32 @@
+<h2> Postits </h2>
+
+<hr />
+
+<div class="form-group now">
+    <label class="col-sm-2 col-from-label"> Filter By:</label>
+
+    <div class="col-sm-10">
+        <input [(ngModel)]="filter" class="form-control">
+    </div>
+</div>
+<br>
+<table class="table table--stripped">
+    <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Details</th>
+        <th>Options</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let postit of filteredPostits"> <!--Angular Iterate-->
+        <td>{{postit.id}}</td>
+        <td>{{postit.title}}</td>
+        <td>{{postit.details}}</td>
+        
+        <td>
+        <!--TODO: postits/info/id to PUT request-->
+            <button (click)='deleteById(postit.id)' class="btn btn-danger">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
