@@ -1,5 +1,6 @@
 package com.lipsoft.postt.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Postit {
     private Long id;
     private String title;
     private String details;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime creationDate;
     @ManyToOne(cascade = CascadeType.ALL)
     private User author;
