@@ -8,6 +8,7 @@ import com.lipsoft.postt.repository.PostitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,10 +26,12 @@ public class PostitService {
     }
 
     public MessageResponseDTO add(PostitDTO postitDTO) {
-        var postit = postitRepository.save(postitMapper.toModel(postitDTO));
+        var postitToSave = postitMapper.toModel(postitDTO);
+        postitToSave.setCreationDate(LocalDateTime.now());
+        postitRepository.save(postitToSave);
         return MessageResponseDTO
                 .builder()
-                .message("Created Postit with ID '" + postit.getId() + "'")
+                .message("Created Postit with ID '" + postitToSave.getId() + "'")
                 .build();
     }
 
