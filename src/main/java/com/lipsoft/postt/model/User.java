@@ -13,6 +13,7 @@ import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -39,5 +40,5 @@ public class User {
     private List<Postit> postitList;
     @OneToMany @LazyCollection(LazyCollectionOption.FALSE)
     @NotAudited
-    private List<Role> roles;
+    private Collection<Role> roles;
 }
