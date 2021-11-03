@@ -25,25 +25,15 @@ public class PosttApplication {
 
 	// Will run after the app has initialized
 	@Bean
-	CommandLineRunner run(RoleService roleService, UserService userService) {
+	CommandLineRunner run(RoleService roleService) {
 		return args -> {
 
-			//Default roles and user for tests, delete before deploying
+			//Default roles for tests, delete before deploying
 			roleService.saveRole(new Role(null, "ROLE_USER"));
 			roleService.saveRole(new Role(null, "ROLE_MANAGER"));
 			roleService.saveRole(new Role(null, "ROLE_ADMIN"));
 			roleService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
 
-			userService.saveUser(new UserDTO(null, "user", "user", "user.test@email.com", 30));
-			userService.saveUser(new UserDTO(null, "manager", "manager", "manager.test@email.com", 30));
-			userService.saveUser(new UserDTO(null, "admin", "admin", "admin.test@email.com", 30));
-			userService.saveUser(new UserDTO(null, "superadmin", "superadmin", "superadmin.test@email.com", 30));
-
-			roleService.addRoleToUser("user", "ROLE_USER");
-			roleService.addRoleToUser("admin", "ROLE_ADMIN");
-			roleService.addRoleToUser("superadmin","ROLE_SUPER_ADMIN");
 		};
 	}
-
-
 }
