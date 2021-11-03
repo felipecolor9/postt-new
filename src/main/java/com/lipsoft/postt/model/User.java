@@ -14,7 +14,6 @@ import org.hibernate.envers.NotAudited;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -36,9 +35,10 @@ public class User {
     private LocalDateTime creationDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime lastAccessDate;
-    @OneToMany @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Postit> postitList;
-    @OneToMany @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user") @LazyCollection(LazyCollectionOption.FALSE)
+    @NotAudited
+    private Collection<Postit> postits;
+    @OneToMany(fetch = FetchType.LAZY) @LazyCollection(LazyCollectionOption.FALSE)
     @NotAudited
     private Collection<Role> roles;
 }
