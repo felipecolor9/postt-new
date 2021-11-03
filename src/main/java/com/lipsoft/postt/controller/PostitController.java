@@ -4,12 +4,10 @@ import com.lipsoft.postt.dto.request.PostitDTO;
 import com.lipsoft.postt.dto.response.MessageResponseDTO;
 import com.lipsoft.postt.exception.PostitNotFoundException;
 import com.lipsoft.postt.service.PostitService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,12 +24,10 @@ import java.util.List;
 })
 @RestController
 @CrossOrigin
-@RequestMapping("/api/postits")
+@RequestMapping("/api/postit")
 public class PostitController {
 
     private final String DOC_POST_OPERATION = "Cria um postit e o adiciona no banco de dados.";
-    private final String DOC_POST_OPERATION_LIST = "Adiciona uma lista de postits e a adiciona no banco de dados.";
-    private final String DOC_GET_OPERATION = "Retorna um postit registrado no banco de dados de acordo com o seu código (ID)";
     private final String DOC_GET_OPERATION_LIST = "Retorna todas os postits registrados no banco de dados.";
     private final String DOC_PUT_OPERATION = "Edita e salva no banco de dados todas as mudancas do postit de acordo com o seu código (ID)";
     private final String DOC_DELETE_OPERATION = "Exclui um postit do banco de dados de acordo com o seu código (ID)";
@@ -40,24 +36,16 @@ public class PostitController {
     PostitService postitService;
 
     @ApiOperation(value = DOC_POST_OPERATION)
-    @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPostitDTO(@RequestBody @Valid PostitDTO postitDTO) { return postitService.add(postitDTO); }
-
-    @ApiOperation(value = DOC_POST_OPERATION_LIST)
-    @PostMapping("/list")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addAllPostitDTO(@RequestBody @Valid List<PostitDTO> postitsDTO) { postitService.addAll(postitsDTO); }
-
-    @ApiOperation(value = DOC_GET_OPERATION)
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public PostitDTO getPostitDTOByID(@PathVariable Long id) throws PostitNotFoundException { return postitService.findByID(id); }
+    public MessageResponseDTO create(@RequestBody @Valid PostitDTO postitDTO) { return postitService.add(postitDTO); }
 
     @ApiOperation(value = DOC_GET_OPERATION_LIST)
-    @GetMapping
+    @GetMapping("/dashboard")
     @ResponseStatus(HttpStatus.OK)
-    public List<PostitDTO> getAllPostitDTO() { return postitService.findAll(); }
+    public List<PostitDTO> fetchAllPostitByUser() {
+        return postitService.findAllByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
 
     @ApiOperation(value = DOC_PUT_OPERATION)
     @PutMapping("/{id}")
