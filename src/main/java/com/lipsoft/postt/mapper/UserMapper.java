@@ -13,7 +13,7 @@ public interface UserMapper {
 
     @Mapping(target = "creationDate", ignore = true)
     @Mapping(target = "lastAccessDate", ignore = true)
-    @Mapping(target = "postitList", ignore = true)
+    @Mapping(target = "postits", ignore = true)
     @Mapping(target = "roles", ignore = true)
     User toModel(UserDTO userDTO);
 
