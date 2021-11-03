@@ -17,10 +17,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -38,8 +36,13 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         var username = request.getParameter("username");
         var password = request.getParameter("password");
-        log.info("Username is : {} - Password is : {}", username, password);
-        return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
+        log.info("Username is : {}", username);
+        var auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
+
+        if (auth.isAuthenticated()) {
+            log.info("Password matches in database, user {} authenticated.", username);
+        }
+        return auth;
     }
 
     @Override
