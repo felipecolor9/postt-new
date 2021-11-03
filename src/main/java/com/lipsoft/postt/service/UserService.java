@@ -36,9 +36,11 @@ public class UserService {
 
     public User register(UserDTO userDTO) throws UsernameAlreadyInUseException {
         var userToSave = userMapper.toModel(userDTO);
-        userToSave.setRoles(new ArrayList<>());
 
         if (isUsernameAvailable(userToSave.getUsername())) {
+
+            userToSave.setRoles(new ArrayList<>());
+            userToSave.setPostits(new ArrayList<>());
             userToSave.setPassword(passwordEncoder.encode(userToSave.getPassword()));
             userToSave.getRoles().add(roleRepository.findByName("ROLE_USER"));
             userToSave.setCreationDate(LocalDateTime.now());
